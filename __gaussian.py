@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 import matplotlib.pyplot as plt
 
-img_path = './img/quran.png'
+img_path = './source_images/quran.png'
 
 img = cv2.imread(img_path)[..., ::-1] / 255.0
 noise = np.random.normal(loc=0, scale=1, size=img.shape)

@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-img = cv2.imread('./img/quran_square.png')
+img = cv2.imread('./source_images/quran_square.png')
 
 
 def motion_blurring(kernel_size: int):

@@ -19,7 +19,7 @@ def ideallowpass(img, size, Do) -> list:
     return [H, D]
 
 
-image = cv2.imread('./img/characters.tif', 0)
+image = cv2.imread('./source_images/characters.tif', 0)
 size = image.shape[0]
 Do = 80
 H, D = ideallowpass(image, size, Do)

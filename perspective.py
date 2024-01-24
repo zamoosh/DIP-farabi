@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 
 ## To read the image
-image = cv2.imread('./img/cards.jpg')
+image = cv2.imread('./source_images/cards.jpg')
 ## Using paint find the 4 corners of the image which needs perspective transform
 ptD = [278, 25]
 ptC = [507, 88]

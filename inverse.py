@@ -4,9 +4,9 @@ import matplotlib.pyplot as plt
 import scipy.io
 from numpy.fft import fft2, ifft2
 
-path4 = './img/Blurred-LowNoise.png'
-path5 = './img/Blurred-MedNoise.png'
-path6 = './img/Blurred-HighNoise.png'
+path4 = './source_images/blurred_low_noise.png'
+path5 = './source_images/blurred_mid_noise.png'
+path6 = './source_images/blurred_high_noise.png'
 
 
 def inverse_filter(img, kernel, k):
@@ -21,7 +21,7 @@ def inverse_filter(img, kernel, k):
 
 
 [image1, image2, image3] = cv2.imread(path4, 0), cv2.imread(path5, 0), cv2.imread(path6, 0)
-mat = scipy.io.loadmat('./img/BlurKernel.mat')
+mat = scipy.io.loadmat('./source_images/blurred_kernel.mat')
 kernel = mat.get('h')
 K = 0.01
 [inv1, inv2, inv3] = inverse_filter(image1, kernel, K), inverse_filter(image2, kernel, K), inverse_filter(image3,

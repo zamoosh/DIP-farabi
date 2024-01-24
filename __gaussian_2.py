@@ -1,7 +1,7 @@
 import numpy as np
 import cv2
 
-img_path = './img/quran_square.png'
+img_path = './source_images/quran_square.png'
 
 img = cv2.imread(img_path)
 mean = 0
@@ -22,7 +22,7 @@ else:
 cv2.normalize(noisy_image, noisy_image, 0, 255, cv2.NORM_MINMAX, dtype=-1)
 noisy_image = noisy_image.astype(np.uint8)
 
-cv2.imshow("img", img)
+cv2.imshow("./source_images", img)
 cv2.imshow("gaussian", gaussian)
 cv2.imshow("noisy", noisy_image)
 

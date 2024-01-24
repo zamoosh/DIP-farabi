@@ -26,7 +26,7 @@ class Histogram:
         return [item for item in range(self.r1,self.r2 + 1)]
 
 if __name__ == '__main__':
-    image = cv2.imread('./img/cameraman.png')
+    image = cv2.imread('./source_images/cameraman.png')
     resize = 300
     r1 = 0
     r2 = 255

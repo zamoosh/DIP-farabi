@@ -17,7 +17,7 @@ def HomomorphicFilter(img, size, Do, gammah, gammal) -> list:
 
 
 Do2 = 100
-img2 = cv2.imread('./img/PET_image.tif', 0)
+img2 = cv2.imread('./source_images/PET_image.tif', 0)
 img2 = cv2.resize(img2, (1610, 1610))
 size2 = img2.shape[0]
 GammaH = 3
@@ -35,4 +35,4 @@ cv2.waitKey(0)
 out2 = cv2.resize(out2, (746, 746))
 cv2.imshow('Homomorphic Filtered Output', out2)
 cv2.waitKey(0)
-cv2.imwrite('./img/homomophic_results.png', out2)
+cv2.imwrite('./source_images/homomophic_results.png', out2)

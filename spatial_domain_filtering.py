@@ -44,8 +44,8 @@ def highboost(img1: Path, img2: Path, kernelsize, boostingvalue) -> list:
     return [img_rst, output, errors]
 
 
-path = './img/noisy.tif'
-path1 = './img/characters.tif'
+path = './source_images/noisy.tif'
+path1 = './source_images/characters.tif'
 
 kernel_size = 10
 boostingvalue = list(range(-30, 40, 10))

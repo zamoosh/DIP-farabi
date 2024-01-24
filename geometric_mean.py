@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import matplotlib.pyplot as plt
 
-img = cv2.imread('./img/cameraman.png', cv2.IMREAD_GRAYSCALE).astype(float)
+img = cv2.imread('./source_images/cameraman.png', cv2.IMREAD_GRAYSCALE).astype(float)
 rows, cols = img.shape[:2]
 ksize = 5
 
@@ -16,7 +16,7 @@ geomean1 = np.uint8(geomean1)
 cv2.imshow('1', geomean1)
 cv2.waitKey()
 
-# geomean2 = np.uint8(np.exp(cv2.boxFilter(np.log(img), -1, (ksize, ksize))))
+# geomean2 = np.uint8(np.exp(cv2.boxFilter(np.log(source_images), -1, (ksize, ksize))))
 # plt.imshow(geomean2, cmap='gray')
 # cv2.imshow('2', geomean2)
 # cv2.waitKey()

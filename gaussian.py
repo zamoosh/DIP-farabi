@@ -71,7 +71,7 @@ def plot_noise(img, mode, r, c, i):
 
 
 def main():
-    # img_path = "./img/quran.png"
+    # img_path = "./source_images/quran.png"
     img_path = "./img_result/quran_motion_blur.jpg"
     g = Gaussian(img_path, (40, 40))
     g.process()
