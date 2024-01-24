@@ -1,8 +1,7 @@
-import numpy as np
+import numpy
 import cv2
 import matplotlib.pyplot as plt
 import scipy.io
-from numpy.fft import fft2, ifft2
 
 path4 = './source_images/blurred_low_noise.png'
 path5 = './source_images/blurred_mid_noise.png'
@@ -10,13 +9,13 @@ path6 = './source_images/blurred_high_noise.png'
 
 
 def inverse_filter(img, kernel, k):
-    kernel /= np.sum(kernel)
-    dummy = np.copy(img)
-    dummy = np.fft.fftshift(np.fft.fft2(dummy))
-    kernel = np.fft.fftshift(np.fft.fft2(kernel, s=img.shape))
-    kernel = np.conj(kernel) / (np.abs(kernel) ** 2 + k)
+    kernel /= numpy.sum(kernel)
+    dummy = numpy.copy(img)
+    dummy = numpy.fft.fftshift(numpy.fft.fft2(dummy))
+    kernel = numpy.fft.fftshift(numpy.fft.fft2(kernel, s=img.shape))
+    kernel = numpy.conj(kernel) / (numpy.abs(kernel) ** 2 + k)
     dummy = dummy * kernel
-    dummy = np.abs(np.fft.ifft2(np.fft.ifftshift(dummy)))
+    dummy = numpy.abs(numpy.fft.ifft2(numpy.fft.ifftshift(dummy)))
     return dummy
 
 
@@ -36,3 +35,11 @@ for i in range(len(display11)):
     plt.imshow(display11[i], cmap='gray')
     plt.title(label11[i])
 plt.show()
+
+
+def main():
+    pass
+
+
+if __name__ == '__main__':
+    main()

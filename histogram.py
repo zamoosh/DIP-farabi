@@ -1,6 +1,7 @@
 import cv2
 import matplotlib.pyplot as plt
 
+
 class Histogram:
     def __init__(self, image, resize, r1, r2):
         self.image = image
@@ -23,7 +24,8 @@ class Histogram:
         return frequency
 
     def createList(self):
-        return [item for item in range(self.r1,self.r2 + 1)]
+        return [item for item in range(self.r1, self.r2 + 1)]
+
 
 if __name__ == '__main__':
     image = cv2.imread('./source_images/cameraman.png')
@@ -37,4 +39,3 @@ if __name__ == '__main__':
     plt.stem(x, f)
     plt.title('Histogram for the given image')
     plt.show()
-    
