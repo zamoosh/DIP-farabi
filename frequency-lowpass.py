@@ -1,35 +1,61 @@
 import cv2
-import numpy as np
+import numpy
+from library.colorful_logging import color_print
+
+PATH = './source_images/characters.tif'
 
 
-def ideallowpass(img, size, Do) -> list:
-    D = np.zeros([size, size], dtype=np.uint32)
-    H = np.zeros([size, size], dtype=np.uint8)
-    r = img.shape[0] // 2
-    c = img.shape[1] // 2
+def lowpass(img, size: int, do) -> tuple[numpy.ndarray, numpy.ndarray]:
+    d_var = numpy.zeros([size, size], dtype=numpy.uint32)
+    h_var = numpy.zeros([size, size], dtype=numpy.uint8)
+
+    r_var = img.shape[0] // 2
+    c_var = img.shape[1] // 2
+
     for u in range(0, size):
         for v in range(0, size):
-            D[u, v] = np.sqrt((u - r) ** 2 + (v - c) ** 2)
-    for i in range(size):
-        for j in range(size):
-            if D[i, j] > Do:
-                H[i, j] = 0
+            d_var[u, v] = numpy.sqrt(
+                (u - r_var) ** 2 + (v - c_var) ** 2
+            )
+
+    for item in range(size):
+        for sec_item in range(size):
+            if d_var[item, sec_item] > do:
+                h_var[item, sec_item] = 0
             else:
-                H[i, j] = 255
-    return [H, D]
+                h_var[item, sec_item] = 255
+
+    return h_var, d_var
 
 
-image = cv2.imread('./source_images/characters.tif', 0)
-size = image.shape[0]
-Do = 80
-H, D = ideallowpass(image, size, Do)
-input1 = np.fft.fftshift(np.fft.fft2(image))
-out = input1*H
-out = np.abs(np.fft.ifft2(np.fft.ifftshift(out)))
-out = np.uint8(cv2.normalize(out, None, 0, 255, cv2.NORM_MINMAX, -1))
-cv2.imshow('Filter Representation', H)
-cv2.waitKey(0)
-cv2.imshow('Magnitude Spectrum', cv2.normalize(np.abs(input1), None, 0, 255, cv2.NORM_MINMAX, -1))
-cv2.waitKey(0)
-cv2.imshow('Ideal Low Pass Filtered Output', out)
-cv2.waitKey(0)
+def main():
+    global PATH
+
+    image = cv2.imread(PATH, 0)
+    size = image.shape[0]
+
+    first_img, second_img = lowpass(image, size, 80)
+
+    inp = numpy.fft.fftshift(
+        numpy.fft.fft2(image)
+    )
+    out = inp * first_img
+    out = numpy.abs(numpy.fft.ifft2(numpy.fft.ifftshift(out)))
+    out = numpy.uint8(cv2.normalize(out, None, 0, 255, cv2.NORM_MINMAX, -1))
+
+    cv2.imshow('Filter Representation', first_img)
+    cv2.waitKey(0)
+
+    cv2.imshow('Magnitude Spectrum', cv2.normalize(numpy.abs(inp), None, 0, 255, cv2.NORM_MINMAX, -1))
+    cv2.waitKey(0)
+
+    cv2.imshow('Ideal Low Pass Filtered Output', out)
+    cv2.waitKey(0)
+
+    return
+
+
+if __name__ == '__main__':
+    color_print('PLEASE ENTER esc TO EXIT', 'bold')
+    main()
+    color_print('ENDED', 'green')

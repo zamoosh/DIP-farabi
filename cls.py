@@ -24,7 +24,7 @@ def clf(image, kernel, lap, gamma: float):
 
 
 def main():
-    global PATH_1, PATH_2, PATH_3
+    global PATH_1, PATH_2, PATH_3, MAT_PATH
 
     gamma = 0.01
     number_arr = numpy.array([
